@@ -5,19 +5,19 @@ on:
     inputs:
       pytest_cpus:
         default: 1
-        required: true
+        required: false
         type: number
         description: 'How many cpu cores to use when running tests'
       
       python_versions:
         default: '["3.12"]'
-        required: true
+        required: false
         type: string
         description: 'The python versions to run tests on'
       
       os_list:
         default: '["ubuntu-latest"]'
-        required: true
+        required: false
         type: string
         description: 'The operating systems to run tests on'
 
