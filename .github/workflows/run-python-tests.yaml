@@ -42,18 +42,15 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
       
-      - name: Install dependencies
+      - name: Install test dependencies
         run: |
           python -m pip install --upgrade pip
-
-          if (-f requirements.txt); then
-              echo "Installing dependencies from requirements.txt file"
-              pip install -r requirements.txt
-          fi
-
-          echo "Installing dependencies for running tests"
           pip install pytest-xdist
           pip install coverage
+      
+      - name: Install dependencies from requirements.txt
+        if: ${{ hashFiles('requirements.txt') != '' }}
+        run: pip install -r requirements.txt
       
       - name: Run tests
         run: |
