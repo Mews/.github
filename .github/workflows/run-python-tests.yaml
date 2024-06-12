@@ -69,7 +69,7 @@ jobs:
       
       - name: Run tests
         run: |
-          pytest ${{inputs.tests_dir}} -n=${{inputs.pytest_cpus}} --cov=./ ${{inputs.extra_pytest_arguments}}
+          pytest ${{inputs.tests_dir}} -n=${{inputs.pytest_cpus}} --cov=./ ${{inputs.extra_pytest_arguments}} --cov-report=json
       
       - name: Report coverage
         run: |
@@ -91,4 +91,3 @@ jobs:
         uses: py-cov-action/python-coverage-comment-action@v3
         with:
           GITHUB_TOKEN: ${{ github.token }}
-          COVERAGE_PATH: './'
