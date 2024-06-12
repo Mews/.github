@@ -54,7 +54,7 @@ jobs:
       
       - name: Run tests
         run: |
-          pytest -n ${{inputs.pytest_cpus}}
+          coverage run -m pytest -n ${{inputs.pytest_cpus}}
       
       - name: Report coverage
         run: |
