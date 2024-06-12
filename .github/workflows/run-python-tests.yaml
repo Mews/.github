@@ -65,7 +65,7 @@ jobs:
       
       - name: Run tests
         run: |
-          coverage run -m pytest ${{inputs.tests_dir}} -n=${{inputs.pytest_cpus}} --cov=${{inputs.coverage_dir}} --cov=${{inputs.tests_dir}}
+          pytest ${{inputs.tests_dir}} -n=${{inputs.pytest_cpus}} --cov=${{inputs.coverage_dir}} --cov=${{inputs.tests_dir}}
       
       - name: Report coverage
         run: |
