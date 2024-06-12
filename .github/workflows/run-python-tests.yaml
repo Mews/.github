@@ -41,9 +41,6 @@ on:
 
 jobs:
   run-python-tests:
-    permissions:
-      contents: write
-
     strategy:
       matrix:
         python-version: ${{fromJson(inputs.python_versions)}}
@@ -77,9 +74,17 @@ jobs:
       - name: Report coverage
         run: |
           coverage report -m
-      
+  
+  create-coverage-comment:
+    if: inputs.create_coverage_comment
+
+    runs-on: 'ubuntu-latest'
+
+    permissions:
+      contents: write
+    
+    steps:
       - name: Generate coverage comment
-        if: runner.os == 'Linux' && inputs.create_coverage_comment
         id: coverage_comment
         uses: py-cov-action/python-coverage-comment-action@v3
         with:
