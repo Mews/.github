@@ -78,6 +78,7 @@ jobs:
   create-coverage-comment:
     if: inputs.create_coverage_comment
 
+    needs: [run-python-tests]
     runs-on: 'ubuntu-latest'
 
     permissions:
