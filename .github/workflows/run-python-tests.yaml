@@ -8,6 +8,11 @@ on:
         type: string
         description: 'The directory where the tests are stored'
 
+      coverage_dir:
+        required: true
+        type: string
+        description: 'The directory to track coverage in'
+
       pytest_cpus:
         default: 1
         required: false
@@ -60,7 +65,7 @@ jobs:
       
       - name: Run tests
         run: |
-          coverage run -m pytest -n ${{inputs.pytest_cpus}} ${{inputs.tests_dir}}
+          coverage run -m pytest ${{inputs.tests_dir}} -n=${{inputs.pytest_cpus}} --cov=${{inputs.coverage_dir}} --cov=${{inputs.tests_dir}}
       
       - name: Report coverage
         run: |
