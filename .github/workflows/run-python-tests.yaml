@@ -3,11 +3,6 @@ name: Run python tests
 on: 
   workflow_call:
     inputs:
-      tests_dir:
-        required: true
-        type: string
-        description: 'The directory where the tests are stored'
-
       pytest_cpus:
         default: 1
         required: false
@@ -60,7 +55,7 @@ jobs:
       
       - name: Run tests
         run: |
-          pytest ${{inputs.tests_dir}} -n=${{inputs.pytest_cpus}}
+          pytest -n=${{inputs.pytest_cpus}}
       
       - name: Report coverage
         run: |
