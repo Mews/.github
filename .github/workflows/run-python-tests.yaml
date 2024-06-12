@@ -71,7 +71,7 @@ jobs:
       
       - name: Run tests
         run: |
-          pytest ${{inputs.tests_dir}} -n=${{inputs.pytest_cpus}} --cov=./ ${{inputs.extra_pytest_arguments}} --cov-report=json
+          pytest ${{inputs.tests_dir}} -n=${{inputs.pytest_cpus}} --cov=./ ${{inputs.extra_pytest_arguments}} --cov-report=json --cov-append
       
       - name: Report coverage
         run: |
