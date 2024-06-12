@@ -1,7 +1,7 @@
 name: Run python tests
 
 on: 
-  workflow_dispatch:
+  workflow_call:
     inputs:
       pytest_cpus:
         default: 1
