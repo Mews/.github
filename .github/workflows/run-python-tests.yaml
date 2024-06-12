@@ -72,19 +72,10 @@ jobs:
       - name: Run tests
         run: |
           pytest ${{inputs.tests_dir}} -n=${{inputs.pytest_cpus}} --cov=./ ${{inputs.extra_pytest_arguments}} --cov-report=json
-        
-        env:
-          COVERAGE_FILE: ".coverage.${{ matrix.python-version }}"
-      
-      - name: Store coverage file
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-${{ matrix.python-version }}
-          path: .coverage.${{ matrix.python-version }}
       
       - name: Report coverage
         run: |
-          coverage report -m --format=json --data-file=$COVERAGE_FILE
+          coverage report -m --format=json
           
   
   create-coverage-comment:
