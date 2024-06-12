@@ -60,7 +60,7 @@ jobs:
       
       - name: Run tests
         run: |
-          pytest ${{inputs.tests_dir}} -n=${{inputs.pytest_cpus}}
+          pytest ${{inputs.tests_dir}} -n=${{inputs.pytest_cpus}} --cov=/
       
       - name: Report coverage
         run: |
