@@ -26,6 +26,18 @@ on:
         type: string
         description: 'The operating systems to run tests on'
 
+      extra_pytest_arguments:
+        default: ''
+        required: false
+        type: string
+        description: 'Any other arguments to pass to the pytest command'
+      
+      create_coverage_comment:
+        default: false
+        required: false
+        type: boolean
+        description: 'Wether or not to create a coverage comment. See https://github.com/py-cov-action/python-coverage-comment-action/tree/v3/'
+
 
 jobs:
   run-python-tests:
@@ -60,14 +72,14 @@ jobs:
       
       - name: Run tests
         run: |
-          pytest ${{inputs.tests_dir}} -n=${{inputs.pytest_cpus}} --cov=./
+          pytest ${{inputs.tests_dir}} -n=${{inputs.pytest_cpus}} --cov=./ ${{inputs.extra_pytest_arguments}}
       
       - name: Report coverage
         run: |
           coverage report -m
       
       - name: Generate coverage comment
-        if: runner.os == 'Linux'
+        if: runner.os == 'Linux' && inputs.create_coverage_comment
         id: coverage_comment
         uses: py-cov-action/python-coverage-comment-action@v3
         with:
