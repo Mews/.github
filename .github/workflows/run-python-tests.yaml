@@ -83,6 +83,7 @@ jobs:
 
     permissions:
       contents: write
+      actions: read
     
     steps:
       - name: Generate coverage comment
