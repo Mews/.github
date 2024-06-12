@@ -75,7 +75,7 @@ jobs:
       
       - name: Report coverage
         run: |
-          coverage report -m --format=json
+          coverage report -m
           
   
   create-coverage-comment:
