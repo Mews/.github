@@ -50,6 +50,9 @@ jobs:
 
     runs-on: ${{ matrix.os }}
 
+    env:
+      COVERAGE_FILE: ".coverage.${{ matrix.python-version }}.${{ matrix.os }}"
+
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
@@ -72,8 +75,6 @@ jobs:
       - name: Run tests
         run: |
           pytest ${{inputs.tests_dir}} -n=${{inputs.pytest_cpus}} --cov=./ ${{inputs.extra_pytest_arguments}}
-        env:
-          COVERAGE_FILE: ".coverage.${{ matrix.python-version }}.${{ matrix.os }}"
       
       - name: Report coverage
         run: |
