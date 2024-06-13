@@ -81,6 +81,7 @@ jobs:
           coverage report -m
       
       - name: Store coverage file
+        if: inputs.create_coverage_comment
         uses: actions/upload-artifact@v4
         with:
           name: .coverage.${{ matrix.python-version }}.${{ matrix.os }}
