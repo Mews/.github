@@ -71,7 +71,7 @@ jobs:
       
       - name: Run tests
         run: |
-          pytest ${{inputs.tests_dir}} -n=${{inputs.pytest_cpus}} --cov=./ ${{inputs.extra_pytest_arguments}} --cov-report=json --cov-append
+          pytest ${{inputs.tests_dir}} -n=${{inputs.pytest_cpus}} --cov=./ ${{inputs.extra_pytest_arguments}} --cov-append
       
       - name: Report coverage
         run: |
@@ -81,7 +81,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-${{ matrix.python-version }}-${{ matrix.os }}
-          path: coverage.json
+          path: .coverage
   
   create-coverage-comment:
     name: Create coverage comment
