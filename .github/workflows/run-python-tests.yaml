@@ -102,10 +102,13 @@ jobs:
         with:
           pattern: .coverage.*
           merge-multiple: true
+      
+      - name: Merge coverage files
+        run: |
+          coverage combine ./
 
       - name: Generate coverage comment
         id: coverage_comment
         uses: py-cov-action/python-coverage-comment-action@v3.24
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MERGE_COVERAGE_FILES: true
