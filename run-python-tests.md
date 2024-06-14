@@ -1,7 +1,8 @@
 
 # run-python-tests
 
-This is a workflow that can be used to run tests using pytest on a matrix of various python versions and operating systems.\
+This is a workflow that can be used to run tests using pytest on a matrix of various python versions and operating systems.
+
 These are the available options:
 
 | Option                  | Description                                                                                                                                                    | Type    | Default             | Required |
