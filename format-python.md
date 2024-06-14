@@ -21,8 +21,6 @@ name: Format code with black
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   format:
