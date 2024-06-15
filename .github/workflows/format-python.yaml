@@ -19,7 +19,7 @@ on:
         default: false
         required: false
         type: boolean
-        description: 'Wether or not to commit the changes directly instead of making a pull request'
+        description: 'Whether or not to commit the changes directly instead of making a pull request'
       
       pull_request_title:
         default: 'Format code with black and isort'
