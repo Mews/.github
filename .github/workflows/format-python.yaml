@@ -65,7 +65,7 @@ jobs:
       run: echo FILES_CHANGED=${{steps.format.outputs.is_formatted == 'true' || contains(steps.isort.outputs.isort-result, 'Fixing')}} >> $GITHUB_ENV
     
  #   - name: Create pull request
- #     if: steps.files_changed.outputs.FILES_CHANGED
+ #     if: steps.files_changed.outputs.FILES_CHANGED == 'true'
  #     uses: peter-evans/create-pull-request@v6
  #     with:
  ##       token: ${{ secrets.GITHUB_TOKEN }}
@@ -77,7 +77,7 @@ jobs:
   #      branch: actions/black
 
     - name: Commit formated file
-      if: steps.files_changed.outputs.FILES_CHANGED
+      if: steps.files_changed.outputs.FILES_CHANGED == 'true'
       run: |
         git config --global user.name "${{inputs.commiter_username}}"
         git config --global user.email ${{inputs.commiter_email}}
