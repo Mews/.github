@@ -62,7 +62,7 @@ jobs:
     
     - name: Check for file changes
       id: files_changed
-      run: echo FILES_CHANGED=$(${{steps.format.outputs.is_formatted == 'true' || contains(steps.isort.outputs.isort-result, 'Fixing')}}) >> $GITHUB_ENV
+      run: echo FILES_CHANGED=${{steps.format.outputs.is_formatted == 'true' || contains(steps.isort.outputs.isort-result, 'Fixing')}} >> $GITHUB_ENV
     
  #   - name: Create pull request
  #     if: steps.files_changed.outputs.FILES_CHANGED
