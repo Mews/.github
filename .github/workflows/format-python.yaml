@@ -22,7 +22,7 @@ on:
         description: 'Wether or not to commit the changes directly instead of making a pull request'
       
       pull_request_title:
-        default: 'Format code with black'
+        default: 'Format code with [black](https://pypi.org/project/black/) and [isort](https://pypi.org/project/isort/)'
         required: false
         type: string
         description: 'The title of the pull request created by the action'
@@ -34,7 +34,7 @@ on:
         description: 'The body of the pull request created by the action'
       
       commit_message:
-        default: 'Formated code with [black](https://pypi.org/project/black/) and [isort](https://pypi.org/project/isort/)'
+        default: 'Formated code with black and isort'
         required: false
         type: string
         description: 'The message for the commit with the formated file changes. Used both in the pull request and when commiting directly'
