@@ -61,25 +61,23 @@ jobs:
         configuration: '${{inputs.isort_args}}'
     
     - name: Check for file changes
-      env:
-        FILES_CHANGED: ${{steps.format.outputs.is_formatted == 'true' || contains(steps.isort.outputs.isort-result, 'Fixing')}}
-      run: echo $FILES_CHANGED
+      id: files_changed
+      run: echo FILES_CHANGED=$(${{steps.format.outputs.is_formatted == 'true' || contains(steps.isort.outputs.isort-result, 'Fixing')}}) >> $GITHUB_ENV
     
-    - name: Create pull request
-      if: $FILES_CHANGED
-      uses: peter-evans/create-pull-request@v6
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        title: "Format Python code with psf/black push"
-        commit-message: ":art: Format Python code with psf/black"
-        body: |
-          There appear to be some python formatting errors in ${{ github.sha }}. This pull request
-          uses the [psf/black](https://github.com/psf/black) formatter to fix these issues.
-        base: ${{ github.head_ref }} # Creates pull request onto pull request or commit branch
-        branch: actions/black
+ #   - name: Create pull request
+ #     if: steps.files_changed.outputs.FILES_CHANGED
+ #     uses: peter-evans/create-pull-request@v6
+ #     with:
+ ##       token: ${{ secrets.GITHUB_TOKEN }}
+ #       title: "Format Python code with psf/black push"
+  #      commit-message: ":art: Format Python code with psf/black"
+ ##         There appear to be some python formatting errors in ${{ github.sha }}. This pull request
+   #       uses the [psf/black](https://github.com/psf/black) formatter to fix these issues.
+  #      base: ${{ github.head_ref }} # Creates pull request onto pull request or commit branch
+  #      branch: actions/black
 
     - name: Commit formated file
-      if: steps.format.outputs.is_formatted == 'true' || contains(steps.isort.outputs.isort-result, 'Fixing')
+      if: steps.files_changed.outputs.FILES_CHANGED
       run: |
         git config --global user.name "${{inputs.commiter_username}}"
         git config --global user.email ${{inputs.commiter_email}}
