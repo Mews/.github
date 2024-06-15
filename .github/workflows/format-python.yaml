@@ -15,6 +15,12 @@ on:
         type: string
         description: 'The options to pass to isort'
       
+      commit_changes:
+        default: false
+        required: false
+        type: boolean
+        description: 'Wether or not to commit the changes directly instead of making a pull request'
+
       commiter_username:
         default: 'Formatter'
         required: false
@@ -63,24 +69,22 @@ jobs:
     - name: Check for file changes
       id: files_changed
       run: echo FILES_CHANGED=${{steps.format.outputs.is_formatted == 'true' || contains(steps.isort.outputs.isort-result, 'Fixing')}} >> $GITHUB_OUTPUT
-    
-    - name: Debug
-      run: echo ${{steps.files_changed.outputs.FILES_CHANGED}}
 
- #   - name: Create pull request
- #     if: steps.files_changed.outputs.FILES_CHANGED == 'true'
- #     uses: peter-evans/create-pull-request@v6
- #     with:
- ##       token: ${{ secrets.GITHUB_TOKEN }}
- #       title: "Format Python code with psf/black push"
-  #      commit-message: ":art: Format Python code with psf/black"
- ##         There appear to be some python formatting errors in ${{ github.sha }}. This pull request
-   #       uses the [psf/black](https://github.com/psf/black) formatter to fix these issues.
-  #      base: ${{ github.head_ref }} # Creates pull request onto pull request or commit branch
-  #      branch: actions/black
+    - name: Create Pull Request
+      if: (steps.files_changed.outputs.FILES_CHANGED == 'true' && (!inputs.commit_changes))
+      uses: peter-evans/create-pull-request@v6
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        title: "Format Python code with psf/black push"
+        commit-message: ":art: Format Python code with psf/black"
+        body: |
+          There appear to be some python formatting errors in ${{ github.sha }}. This pull request
+          uses the [psf/black](https://github.com/psf/black) formatter to fix these issues.
+        base: ${{ github.head_ref }} # Creates pull request onto pull request or commit branch
+        branch: actions/black
 
     - name: Commit formated file
-      if: steps.files_changed.outputs.FILES_CHANGED == 'true'
+      if: (steps.files_changed.outputs.FILES_CHANGED == 'true' && inputs.commit_changes)
       run: |
         git config --global user.name "${{inputs.commiter_username}}"
         git config --global user.email ${{inputs.commiter_email}}
