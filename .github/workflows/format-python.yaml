@@ -37,7 +37,7 @@ on:
         default: 'Formated code with black and isort'
         required: false
         type: string
-        description: 'The message for the commit with the formated file changes. Used both in the pull request and when commiting directly'
+        description: 'The message for the commit with the formatted file changes. Used both in the pull request and when commiting directly'
 
       commiter_username:
         default: 'Formatter'
