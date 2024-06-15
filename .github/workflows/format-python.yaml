@@ -10,7 +10,7 @@ on:
         description: 'The options to pass to black'
       
       isort_args:
-        default: '--verbose'
+        default: ''
         required: false
         type: string
         description: 'The options to pass to isort'
