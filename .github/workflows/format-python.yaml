@@ -20,6 +20,24 @@ on:
         required: false
         type: boolean
         description: 'Wether or not to commit the changes directly instead of making a pull request'
+      
+      pull_request_title:
+        default: 'Format code with black'
+        required: false
+        type: string
+        description: 'The title of the pull request created by the action'
+      
+      pull_request_body:
+        default: 'There are some python formatting issues in ${{ github.sha }}. This pull request fixes those using [black](https://pypi.org/project/black/) along with [isort](https://pypi.org/project/isort/)'
+        required: false
+        type: string
+        description: 'The body of the pull request created by the action'
+      
+      commit_message:
+        default: 'Formated code with [black](https://pypi.org/project/black/) and [isort](https://pypi.org/project/isort/)'
+        required: false
+        type: string
+        description: 'The message for the commit with the formated file changes. Used both in the pull request and when commiting directly'
 
       commiter_username:
         default: 'Formatter'
@@ -82,11 +100,9 @@ jobs:
       uses: peter-evans/create-pull-request@v6
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        title: "Format Python code with psf/black push"
-        commit-message: ":art: Format Python code with psf/black"
-        body: |
-          There appear to be some python formatting errors in ${{ github.sha }}. This pull request
-          uses the [psf/black](https://github.com/psf/black) formatter to fix these issues.
+        title: ${{ inputs.pull_request_title }}
+        commit-message: ${{ inputs.commit_message }}
+        body: ${{ inputs.pull_request_body }}
 
     - name: Commit formated file
       if: (steps.files_changed.outputs.FILES_CHANGED == 'true' && inputs.commit_changes)
@@ -95,5 +111,5 @@ jobs:
         git config --global user.email ${{inputs.commiter_email}}
 
         git add .
-        git commit -m "Formated code"
+        git commit -m ${{ inputs.commit_message }}
         git push
