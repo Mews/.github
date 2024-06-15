@@ -12,8 +12,8 @@ These are the available options.
 | pull_request_title | The title for the pull request created by the action                                                                     | string  | Format code with black and isort                                                                                                                                                           | No       |
 | pull_request_body  | The body for the pull request created by the action                                                                      | string  | There are some python formatting issues in <commit SHA>. This pull request fixes those using [black](https://pypi.org/project/black/) along with [isort](https://pypi.org/project/isort/). | No       |
 | commit_message     | The message for the commit with the formatted file changes.<br>Used both in the pull request and when commiting directly | string  | Formated code with black and isort                                                                                                                                                         | No       |
-| commiter_username  | The username to register in git (not shown in commit)                                                                    | string  | Formatter                                                                                                                                                                                  | No       |
-| commiter_email     | The email of the user shown in the commit                                                                                | string  | github-actions[bot]@users.noreply.github.com                                                                                                                                               | No       |
+| commiter_username  | The username to register in git (not shown in commit) (only used when committing directly)                               | string  | Formatter                                                                                                                                                                                  | No       |
+| commiter_email     | The email of the user shown in the commit (only used when commiting directly)                                            | string  | github-actions[bot]@users.noreply.github.com                                                                                                                                               | No       |
 
 The default `commiter_email` option refers to the github-actions[bot] account.
 
@@ -24,6 +24,8 @@ name: Format code with black
 
 on:
   push:
+    branches: [ "main" ]
+  pull_request:
     branches: [ "main" ]
 
 jobs:
