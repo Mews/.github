@@ -88,12 +88,6 @@ jobs:
     - name: Check for file changes
       id: files_changed
       run: echo FILES_CHANGED=${{steps.format.outputs.is_formatted == 'true' || contains(steps.isort.outputs.isort-result, 'Fixing')}} >> $GITHUB_OUTPUT
-    
-    - name: Extract branch name
-      if: (steps.files_changed.outputs.FILES_CHANGED == 'true' && (!inputs.commit_changes))
-      shell: bash
-      run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
-      id: extract_branch
 
     - name: Create Pull Request
       if: (steps.files_changed.outputs.FILES_CHANGED == 'true' && (!inputs.commit_changes))
