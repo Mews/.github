@@ -33,6 +33,12 @@ on:
         type: string
         description: 'The body of the pull request created by the action'
       
+      pull_request_branch:
+        default: 'format-code'
+        required: false
+        type: string
+        description: 'The name of the branch to create the pull request from'
+      
       commit_message:
         default: 'Formated code with black and isort'
         required: false
@@ -97,6 +103,7 @@ jobs:
         title: ${{ inputs.pull_request_title }}
         commit-message: ${{ inputs.commit_message }}
         body: ${{ inputs.pull_request_body }}
+        branch: ${{ inputs.pull_request_branch }}
 
     - name: Commit formated file
       if: (steps.files_changed.outputs.FILES_CHANGED == 'true' && inputs.commit_changes)
