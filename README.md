@@ -7,3 +7,6 @@ More info [here](/run-python-tests.md)
 
 [format-python](/.github/workflows/format-python.yaml) - Run the black code formater along with isort to format your code and automatically commit it.\
 More info [here](/format-python.md)
+
+## Issue templates
+There is a [bug report template](/.github/ISSUE_TEMPLATE/bug_report.md) and a [feature request template](/.github/ISSUE_TEMPLATE/feature_request.md)
