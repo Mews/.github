@@ -19,7 +19,8 @@ These are the available options.
 The default `commiter_email` option refers to the github-actions[bot] account.
 
 ## Basic setup
-**You must give the job `contents: write` and `pull-requests: write` permissions to use this workflow**
+**You must give the job `contents: write` and `pull-requests: write` permissions to use this workflow**\
+**You must also go to your repository Settings > Actions > General, and tick `Allow GitHub Actions to create and approve pull requests`**
 ```yml
 name: Format code with black
 
