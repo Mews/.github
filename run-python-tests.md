@@ -15,6 +15,8 @@ These are the available options:
 | extra_pytest_arguments  | Any other arguments to pass to pytest                                                                                                                          | string  | N/A                 | No       |
 
 ## Basic setup
+***Important:***\
+You must have a requirements.txt file in order for python to be setup successfully
 ```yaml
 name: Tests
 
