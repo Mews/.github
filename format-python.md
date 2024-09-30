@@ -19,14 +19,13 @@ These are the available options.
 The default `commiter_email` option refers to the github-actions[bot] account.
 
 ## Basic setup
-**You must give the job `contents: write` and `pull-requests: write` permissions to use this workflow**
+**You must give the job `contents: write` and `pull-requests: write` permissions to use this workflow**\
+**You must also go to your repository Settings > Actions > General, and tick `Allow GitHub Actions to create and approve pull requests`**
 ```yml
 name: Format code with black
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
     branches: [ "main" ]
 
 jobs:
@@ -39,10 +38,3 @@ jobs:
 
     uses: Mews/.github/.github/workflows/format-python.yaml@main
 ```
-## Acknowledgements
-
- - [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
- - [Awesome README](https://github.com/matiassingers/awesome-readme)
- - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
-
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=mews)
