@@ -79,6 +79,9 @@ jobs:
       - name: Report coverage
         run: |
           coverage report -m
+
+      - name: Rename coverage file
+        run: mv .coverage .coverage.${{ matrix.python-version }}.${{ matrix.os }}
       
       - name: Store coverage file
         if: inputs.create_coverage_comment
