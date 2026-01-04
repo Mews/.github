@@ -86,6 +86,7 @@ jobs:
         with:
           name: .coverage.${{ matrix.python-version }}.${{ matrix.os }}
           path: .coverage.${{ matrix.python-version }}.${{ matrix.os }}
+          include-hidden-files: true
   
   create-coverage-comment:
     name: Create coverage comment
