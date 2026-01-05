@@ -7,9 +7,9 @@ assignees: ''
 
 ---
 
-Thanks for opening an issue ❤️
+<!-- Thanks for opening an issue ❤️ -->
 
-Write a short description of the bug in the issue title
+<!-- Write a short description of the bug in the issue title -->
 
 **Describe the bug**
 Describe the bug in length here.

@@ -6,9 +6,9 @@ labels: enhancement
 assignees: ''
 ---
 
-Thanks for opening an issue ❤️
+<!-- Thanks for opening an issue ❤️ -->
 
-Write a short description of your feature in the issue title
+<!-- Write a short description of the bug in the issue title -->
 
 **Describe the feature you'd like**
 Describe in length the feature you'd like to see added to this project.
