@@ -14,15 +14,6 @@
 ## Checklist
 <!--- Make sure you have completed the following steps before submitting your PR -->
 <!--- Feel free to type an `x` in all the boxes below to let us know you have completed the steps: -->
-<!--- You can delete the checkboxes that don't apply -->
+<!--- If not applicable, check the box -->
 - [ ] Added necessary documentation (if applicable)
 - [ ] Added tests to cover new features (if applicable)
-
-## Type of change
-<!--- Select one of the categories below by typing an `x` in the box -->
-<!--- You can delete the checkboxes that don't apply -->
-- [ ] New feature / enhancement
-- [ ] Bug fix
-- [ ] Documentation
-- [ ] Maintenance
-- [ ] Other (please specify):
