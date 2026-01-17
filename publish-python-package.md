@@ -32,7 +32,7 @@ on:
 
 jobs:
   publish:
-    uses: ./.github/workflows/publish-python-package.yml
+    uses: Mews/.github/.github/workflows/publish-python-package.yaml@main
     with:
       python_version: '3.13'
       os: 'ubuntu-latest'
