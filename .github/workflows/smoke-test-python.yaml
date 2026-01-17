@@ -51,4 +51,6 @@ jobs:
       
       - name: Try import
         shell: bash
-        run: python -c "import ${{inputs.package_name}}; print('Successfully imported ${{inputs.package_name}}!')"
+        run: |
+          cd $RUNNER_TEMP
+          python -c "import ${{inputs.package_name}}; print('Successfully imported ${{inputs.package_name}}!')"
