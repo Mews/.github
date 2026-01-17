@@ -7,18 +7,20 @@
 
 ## Related Issue
 <!--- If applicable, please type an `x` in one of the boxes below and provide the issue number after the # sign: -->
+<!--- You can delete the checkboxes that don't apply -->
 - [ ] Closes #
 - [ ] Related to #
 
 ## Checklist
 <!--- Make sure you have completed the following steps before submitting your PR -->
 <!--- Feel free to type an `x` in all the boxes below to let us know you have completed the steps: -->
-- [ ] Checked that the pre-commit checks pass (see [Contributing]("contibuting.md"))
+<!--- You can delete the checkboxes that don't apply -->
 - [ ] Added necessary documentation (if applicable)
 - [ ] Added tests to cover new features (if applicable)
 
 ## Type of change
 <!--- Select one of the categories below by typing an `x` in the box -->
+<!--- You can delete the checkboxes that don't apply -->
 - [ ] New feature / enhancement
 - [ ] Bug fix
 - [ ] Documentation
