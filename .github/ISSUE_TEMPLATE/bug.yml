@@ -54,8 +54,8 @@ body:
     id: os
     attributes:
       label: Operating System
-      description: e.g. Windows 10, Ubuntu 22.04
-      placeholder: Windows 11
+      description: The operating system you were using.
+      placeholder: "Ex.: Windows 11, Ubuntu 25.10"
     validations:
       required: true
 
