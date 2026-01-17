@@ -11,7 +11,7 @@ This is a workflow that performs a "smoke test", basically a very preliminary te
 
 ## Basic setup
 ```yaml
-name: Tests
+name: Smoke Tests
 
 on:
   push:
