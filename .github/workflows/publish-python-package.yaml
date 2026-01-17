@@ -56,6 +56,7 @@ jobs:
       name: ${{ inputs.pypi_environment }}
     permissions:
       id-token: write
+      contents: read
     
     steps:
       - name: Download all the dists

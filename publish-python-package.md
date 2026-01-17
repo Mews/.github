@@ -38,4 +38,5 @@ jobs:
       os: 'ubuntu-latest'
     permissions:
       id-token: write
+      contents: read
 ```
