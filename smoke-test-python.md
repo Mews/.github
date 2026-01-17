@@ -21,7 +21,7 @@ on:
 
 jobs:
   call-run-python-tests:
-    name: Run tests
+    name: Run smoke tests
 
     uses: Mews/.github/.github/workflows/smoke-test-python.yaml@main
     with:
