@@ -1,0 +1,70 @@
+name: Publish to PyPI
+
+on:
+  workflow_call:
+    inputs:
+      python_version:
+        description: 'Python version to use for build'
+        default: '3.13'
+        required: false
+        type: string
+      os:
+        description: 'OS to run the build on'
+        default: 'ubuntu-latest'
+        required: false
+        type: string
+      pypi_url:
+        description: 'The name of the GitHub Environment (for OIDC)'
+        default: 'https://upload.pypi.org/legacy/'
+        required: false
+        type: string
+      pypi_environment:
+        description: 'The name of the GitHub Environment (for OIDC)'
+        default: 'pypi'
+        required: false
+        type: string
+
+jobs:
+  build:
+    name: Build distribution
+    runs-on: ${{ inputs.os }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v6.1.0
+        with:
+          python-version: ${{ inputs.python_version }}
+
+      - name: Install build tools
+        run: pip install build
+
+      - name: Build wheels
+        run: python -m build
+
+      - name: Store the wheels
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+
+  publish:
+    name: Publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.pypi_environment }}
+    permissions:
+      id-token: write
+    
+    steps:
+      - name: Download all the dists
+        uses: actions/download-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: ${{ inputs.pypi_url }}
