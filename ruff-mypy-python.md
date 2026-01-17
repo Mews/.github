@@ -26,7 +26,7 @@ on:
 
 jobs:
   linting-and-type-checking:
-    name: Run smoke tests
+    name: 'Lint & Type Check'
 
     uses: Mews/.github/.github/workflows/ruff-mypy-python.yaml@main
     with:
