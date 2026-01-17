@@ -16,7 +16,7 @@ body:
     attributes:
       label: Describe the feature you'd like
       description: Describe in length the feature you'd like to see added to this project.
-      placeholder: Detailed eature description
+      placeholder: Detailed feature description...
     validations:
       required: true
 
