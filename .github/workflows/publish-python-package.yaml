@@ -14,7 +14,7 @@ on:
         required: false
         type: string
       pypi_url:
-        description: 'The name of the GitHub Environment (for OIDC)'
+        description: 'The repository URL to upload the package to'
         default: 'https://upload.pypi.org/legacy/'
         required: false
         type: string
