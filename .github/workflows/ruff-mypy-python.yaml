@@ -1,0 +1,96 @@
+name: 'Lint & Type Check'
+
+on: 
+  workflow_call:
+    inputs:
+      lint:
+        default: true
+        required: false
+        type: boolean
+        description: 'Whether or not to lint using ruff'
+      
+      format:
+        default: true
+        required: false
+        type: boolean
+        description: 'Whether or not to format using ruff'
+      
+      type_check:
+        default: true
+        required: false
+        type: boolean
+        description: 'Whether or not to type check using mypy'
+      
+      lint_command:
+        default: 'ruff check .'
+        required: false
+        type: string
+        description: 'The command to use to lint with ruff'
+      
+      format_command:
+        default: 'ruff format . --check'
+        required: false
+        type: string
+        description: 'The command to use to format with ruff'
+      
+      type_check_command:
+        default: 'mypy .'
+        required: false
+        type: string
+        description: 'The command to use to type check with mypy'
+      
+      os:
+        default: 'ubuntu-latest'
+        required: false
+        type: string
+        description: 'The os to use'
+      
+      python_version:
+        default: '3.13'
+        required: false
+        type: string
+        description: 'The python version to use'
+      
+      dependency_install_command:
+        default: 'pip install .'
+        required: false
+        type: string
+        description: 'The command to use to install the project dependencies'
+
+
+jobs:
+  idk:
+    name: 'Lint & Type Check'
+
+    runs-on: ${{ inputs.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ inputs.python_version }}
+        uses: actions/setup-python@v6.1.0
+        with:
+          python-version: ${{ inputs.python_version }}
+          cache: 'pip'
+      
+      - name: Install Dependencies
+        run: ${{inputs.dependency_install_command}}
+
+      - name: Install ruff
+        if: ${{ inputs.lint == true || inputs.format == true }}
+        run: pip install ruff
+      
+      - name: Install mypy
+        if: ${{ inputs.type_check == true }}
+        run: pip install mypy
+      
+      - name: Linting
+        if: ${{ inputs.lint == true }}
+        run: ${{ inputs.lint_command }}
+      
+      - name: Formating check
+        if: ${{ inputs.format == true }}
+        run: ${{ inputs.format_command }}
+      
+      - name: Type checking
+        if: ${{ inputs.type_check == true }}
+        run: ${{ inputs.type_check_command }}
